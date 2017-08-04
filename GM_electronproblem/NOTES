@@ -1,0 +1,63 @@
+#170621
+# make sure to copy over teh files from the GM folfder in keywork for most updated version
+
+# notes from slack:
+#(1) build the KE matrix, 
+#(2) build the nuclear attraction matrix, 
+#(3) solve the generalized eigenvalue problem for the energies and MO coefficients, and 
+#(4) plot the total energy of [H2]+ as a function of atomic separation (from 0.5 au to 10.0 au)
+#(5) Generalize your code so that the basis set can have more than one basis function per atom (e.g. two basis functions, as in 3-21G; or three basis functions, as in 6-311G).
+#(6) Compare the dissociation curves of (H2)+ calculated using the STO-3G, 3-21G and 6-311G basis sets.
+#(7) Compare your calculated dissociation energy of (H2)+ using the largest basis set with the experimental measurement of the dissociation energy, contained in this paper:
+#(8) Generalize your code to handle different atoms (with 1s functions, we can only handle H or He atoms), and make sure to enter the coefficients for the STO-3G basis set for helium.
+#    The exponents for helium are different but the linear combination coefficients are the same:
+#          6.36242139             0.15432897
+#          1.15892300             0.53532814
+#          0.31364979             0.44463454
+#(9) Find the equilibrium distance of (HeH)2+ using STO-3G, and plot the bonding molecular orbital along the molecular axis, at the equilibrium distance.
+#(10) Generalize your code so that it can handle more than two atoms in the system, allowing the atoms to be located anywhere in 3-D space.
+#(11) Plot the potential energy surface of (H3)2+ as a function of r(H2-H1) and r(H3-H2), assuming the atoms are arranged as H1–H2–H3 in a line.
+#Chapter 9 of the purple book may have working equations for the p-integrals
+#
+#main milestones: 
+#(1) Diagonalizing the core Hamiltonian and obtaining the correct MO coefficients; 
+#(2) Calculating the restricted Hartree-Fock energy from the "initial guess" molecular orbitals that comes from (1).
+#Your codes should be able to handle 1s Gaussian functions and support any number of hydrogen and helium atoms.  For the time being we won't go to higher basis functions
+#  
+#One Electron Integrals Calculated:
+#
+#Overlap matrix S
+#[[ 1.00000146  0.59521639  0.09090182  0.21271836]
+# [ 0.59521639  1.          0.33445798  0.58142644]
+# [ 0.09090182  0.33445798  1.00000025  0.64589902]
+# [ 0.21271836  0.58142644  0.64589902  1.        ]]
+#
+#Kinetic energy matrix T
+#[[ 3.91612953  0.57894982 -0.07253787  0.06437328]
+# [ 0.57894982  0.5744895   0.0969475   0.15238223]
+# [-0.07253787  0.0969475   1.54940493  0.2931518 ]
+# [ 0.06437328  0.15238223  0.2931518   0.274788  ]]
+#
+#Nuclear attraction matrix V
+#[[-6.01887445 -2.55025777 -0.35016867 -0.87003997]
+# [-2.55025777 -2.49407349 -0.87537411 -1.29768916]
+# [-0.35016867 -0.87537411 -2.77875362 -1.46151722]
+# [-0.87003997 -1.29768916 -1.46151722 -1.62944811]]
+#
+#Core Hamiltonian matrix H = T + V
+#[[-2.10274492 -1.97130795 -0.42270654 -0.80566668]
+# [-1.97130795 -1.91958399 -0.77842661 -1.14530694]
+# [-0.42270654 -0.77842661 -1.22934868 -1.16836542]
+# [-0.80566668 -1.14530694 -1.16836542 -1.35466011]]
+#
+#Two-electron Integrals G
+#[[[[ 1.80325987  0.87650874  0.11829416  0.29968879]
+#   [ 0.87650874  0.91700963  0.23781881  0.43889529]
+#   [ 0.11829416  0.23781881  0.52774164  0.33692221]
+#   [ 0.29968879  0.43889529  0.33692221  0.46613298]]
+#
+#  [[ 0.87650874  0.45207792  0.0628695   0.15616976]
+#   [ 0.45207792  0.51467845  0.13770134  0.25089583]
+#   [ 0.0628695   0.13770134  0.31290548  0.19886278]
+#   [ 0.15616976  0.25089583  0.19886278  0.27375148]]
+#  ...
